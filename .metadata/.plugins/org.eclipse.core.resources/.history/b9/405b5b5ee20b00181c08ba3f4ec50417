@@ -1,0 +1,97 @@
+package org.multithreading.part2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+/**
+ * This is responsible for writing WIKI extract for each String param in separate file
+ * @author juilykumari
+ *
+ */
+public class WikiReader {
+private static String WIKI_URL="https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=";
+	
+	/*
+	 * Writing the WIKI extract into files for each string param. 
+	 */
+	public void generateWikiFiles(Set<String> wordsToBeSearched) {
+		Path out = null;
+		String filePath = "/home/juilykumari/Documents/wiki_";
+		for (String string : wordsToBeSearched) {
+			try {
+				out = Paths.get(filePath+string+".txt");
+				URL wikiUrl = new URL(WIKI_URL+string);
+		        URLConnection con = wikiUrl.openConnection();
+		        System.out.println(con.getInputStream());
+		        BufferedReader in = new BufferedReader(new InputStreamReader(
+		                         		con.getInputStream()));
+		        List<String> result = new ArrayList<>();
+		        result.add(fetchExtract(in.readLine()));
+		        in.lines().map(line->fetchExtract(line)).collect(Collectors.toList());
+		        in.close();				
+				Files.write(out,result,Charset.defaultCharset());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+		}
+	}
+	
+	 void pingAndReportEachWhenKnown(Set<String> wordsToBeSearched)  throws InterruptedException, ExecutionException  {
+		 Path out = null;
+			String filePath = "/home/juilykumari/Documents/wiki_";
+		 int numThreads = wordsToBeSearched.size() > 10 ? 10 : wordsToBeSearched.size(); 
+		    ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+		    CompletionService<String> compService = new ExecutorCompletionService<>(executor);
+		    for(String word : wordsToBeSearched){
+		      Task task = new Task(url);
+		      compService.submit(task);
+		    }
+		    for(String url : URLs){
+		      Future<PingResult> future = compService.take();
+		      log(future.get());
+		    }
+		    executor.shutdown(); //always reclaim resources
+		  }
+	
+	/*
+	 * Fetching the extract out of JSON reponse of WIKI call.
+	 */
+	private String fetchExtract(String inputString) {
+		ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> json = null;
+		try {
+			json = mapper.readValue(inputString, new TypeReference<Map<String, Object>>() {});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}      
+        Map<String, Object> query = (Map<String, Object>)json.get("query");
+        Map<String, Object> pages = (Map<String, Object>)query.get("pages");
+
+        for (String key: pages.keySet()) {
+            Map<String, Object> page = (Map<String, Object>) pages.get(key);
+            String extract = page.get("extract") == null ? "" : page.get("extract").toString();
+            return extract;
+        }
+		return inputString;
+	}
+}

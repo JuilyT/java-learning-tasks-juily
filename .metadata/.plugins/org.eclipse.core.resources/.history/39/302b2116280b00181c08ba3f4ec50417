@@ -1,0 +1,24 @@
+package org.Generics;
+
+import com.javalearning.assignments.java_learning.Week;
+
+public enum Week {
+	private Integer code;
+	Week(int code) {
+		this.code=code;
+	}
+	public Integer getCode() {
+		return code;
+	}
+	public void setCode(Integer code) {
+		this.code = code;
+	}
+	public static <T> Week getType(T name) {
+	    for (Week category : values()) {
+	        if (category.getCode().equals(name)) {
+	            return category;
+	        }
+	    }    
+	    return null;
+	}
+}

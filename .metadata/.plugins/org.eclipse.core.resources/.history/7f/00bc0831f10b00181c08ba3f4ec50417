@@ -1,0 +1,11 @@
+package org.multithreading.part3;
+
+import java.util.Set;
+
+import org.multithreading.part2.CommonFileReader;
+import org.multithreading.part2.FileFormatType;
+
+public class AutoSuggest {
+	CommonFileReader reader = new CommonFileReader();
+	Set<String> wordsToBeSearched = reader.readFiles(FileFormatType.LINE_SEPARATED);
+}

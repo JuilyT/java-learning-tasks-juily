@@ -1,0 +1,5 @@
+package org.Refactoring;
+
+public interface PrintGenerator {
+
+}

@@ -1,0 +1,5 @@
+package org.Generics;
+
+public class SimpleType<S>{
+
+}

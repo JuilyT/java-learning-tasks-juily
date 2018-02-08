@@ -1,0 +1,13 @@
+package org.multithreading.part1;
+
+public class ForkAndJoinTask {
+	public ForkAndJoinTask () {
+    }
+    
+    public static void main(String[] args) {
+    	ForkJoinPool commonPool = ForkJoinPool.commonPool();
+        List<String> lines = new CSVReader().readCSV();
+        System.out.println(lines.size());
+        commonPool.invoke(new CustomRecursiveAction(lines));
+	}
+}

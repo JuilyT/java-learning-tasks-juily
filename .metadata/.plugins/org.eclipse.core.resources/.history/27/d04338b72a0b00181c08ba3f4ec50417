@@ -1,0 +1,52 @@
+package org.multithreading.part1;
+
+import java.util.concurrent.RecursiveTask;
+
+public class CustomRecursiveAction extends RecursiveTask{
+	private static final long serialVersionUID = 1L;
+	private static Logger logger = Logger.getAnonymousLogger();
+	private List<String> workload = new ArrayList<>();
+    private static final int THRESHOLD = 1000;
+    private static AtomicInteger counter= new AtomicInteger() ;
+    
+    public CustomRecursiveAction(List<String> workload) {
+        this.workload = workload;
+    }
+    
+	@Override
+	protected Object compute() {
+		if(workload.size() > THRESHOLD) {
+			ForkJoinTask.invokeAll(createSubtasks());
+		} else {
+			processing(workload);
+		}
+		return null;
+	}
+	
+	private List<CustomRecursiveAction> createSubtasks() {
+        List<CustomRecursiveAction> subtasks = new ArrayList<>();
+        int size = workload.size();
+        List<String> partOne = workload.subList(0,THRESHOLD);
+        List<String> partTwo = workload.subList(THRESHOLD + 1, size);
+        subtasks.add(new CustomRecursiveAction(partOne));
+        subtasks.add(new CustomRecursiveAction(partTwo));
+        return subtasks;
+    }
+	
+	private void processing(List<String> work) {
+		int count = counter.incrementAndGet();
+		Path out = Paths.get("/home/juilykumari/Documents/output"+"_"+count+".txt");
+		try {
+			List<String> arrayList = new ArrayList<> (work);
+			Files.write(out,arrayList,Charset.defaultCharset());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		System.out.println("currentThread:"+Thread.currentThread().getName()+ 
+				Thread.currentThread().getState());
+	}
+
+	public AtomicInteger getCounter() {
+		return counter;
+	}
+}

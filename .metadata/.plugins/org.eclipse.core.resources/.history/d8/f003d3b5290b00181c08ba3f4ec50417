@@ -1,0 +1,18 @@
+package org.multithreading.part1;
+
+public class CSVReader {
+	public CSVReader() {
+    }
+    
+    public List<String> readCSV() {
+    	List<String> lines = null;
+    	try {
+            BufferedReader br = Files.newBufferedReader(
+            		Paths.get("/home/juilykumari/Downloads/Multithreading_Task1_Books.csv"));
+            lines = br.lines().collect(Collectors.toList()); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    	return lines;
+    }
+}

@@ -1,0 +1,10 @@
+package org.Refactoring;
+
+public class PdfPrintImpl implements PrintGenerator{
+
+	public void print(Customer cust, String type, String msg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

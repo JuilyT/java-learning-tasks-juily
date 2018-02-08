@@ -1,0 +1,40 @@
+package com.javalearning.assignments.java_learning;
+
+public class GenericType<S> {
+	public static final SimpleType<Status> STATUS =
+		      new SimpleType<Status>(Status.class);
+
+		   public static final SimpleType<Week> WEEK =
+		      new SimpleType<Week>(Week.class);
+
+		   public static final SimpleType<Currency> CURRENCY =
+		      new SimpleType<Currency>(Currency.class);
+
+		   private final Class<S> javaType;
+
+		   public SimpleType(Class<S> javaType) {
+		      this.javaType = javaType;
+		   }
+		   public Class<S> getJavaType() {
+			return javaType;
+		   }
+
+		public static <T> SimpleType<?> parse(T s) throws NullPointerException {
+			try {
+				if (Status.getType(s)!=null) {
+					return STATUS;
+				} else if (Week.getType(s)!=null) {
+					return WEEK;
+				} else if (Currency.getType(s)!=null) {
+					return CURRENCY;
+				}
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			}
+			throw new AssertionError("impossible!");
+		}
+		
+		public static void main(String[] args) {
+			System.out.println(parse(1));
+		}
+}

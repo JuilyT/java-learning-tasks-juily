@@ -1,0 +1,22 @@
+package org.multithreading.part3;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class WordCounter {
+	private static String PATH = "/home/juilykumari/Documents/wiki_results";
+	public static void main(String[] args) {
+		List<String> lines = null;
+		try {
+	        BufferedReader br = Files.newBufferedReader(
+	        		Paths.get("/home/juilykumari/Downloads/Multithreading_Task1_Books.csv"));
+	        lines = br.lines().collect(Collectors.toList());
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+}

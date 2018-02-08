@@ -1,0 +1,22 @@
+package org.Refactoring;
+
+import java.util.Iterator;
+
+public class EmailPrintStatement implements PrintStatement{
+	private Customer customer;
+
+	public EmailPrintStatement(Customer customer) {
+		this.customer = customer;
+	}
+
+	public String fetchStatement() {
+		Iterator<Rental> iterator = customer.getRentals().iterator();
+		double price = 0.0;
+		while (iterator.hasNext()) {
+			Rental rental = iterator.next();
+			rental.setBook(BookFactory.getBook(rental.getBook().getBookCategory()));
+			price += rental.getBook().getPrice(rental.getDaysRented());
+		}
+		return new StringBuilder().append("Email Statement: ").append(price).toString();
+	}
+}

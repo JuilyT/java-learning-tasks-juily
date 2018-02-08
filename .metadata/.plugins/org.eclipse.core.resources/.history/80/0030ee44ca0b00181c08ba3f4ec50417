@@ -1,0 +1,12 @@
+package org.Refactoring;
+
+public class PrintGenerator {
+	/*
+	 * We can pass type: pdf/email 
+	 * msg: actual message
+	 * accordingly we can implement Print()
+	 */
+	public void print(Customer cust, String msg){
+		
+	}
+}

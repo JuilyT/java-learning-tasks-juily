@@ -1,0 +1,16 @@
+package org.Refactoring;
+
+public class PrintStatementFactory {
+	public static PrintStatement getStatement(PrintType printType, Customer customer) {
+		switch (printType) {
+			case EMAIL:
+				return new EmailStatement(customer);
+			case PDF:
+				return new PDFStatement(customer);
+			default:
+				break;
+			}
+			return null;
+		}
+	}
+}

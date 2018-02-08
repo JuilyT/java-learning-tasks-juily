@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.javalearning.assignments&apos; to &apos;com.javalearning.assignments.multithreding.part1&apos;&#x0A;- Original project: &apos;Mutithreading&apos;&#x0A;- Original element: &apos;Mutithreading/src/main/java/com.javalearning.assignments&apos;&#x0A;- Renamed element: &apos;Mutithreading/src/main/java/com.javalearning.assignments.multithreding.part1&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.javalearning.assignments&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.javalearning.assignments" name="com.javalearning.assignments.multithreding.part1" qualified="false" references="true" stamp="1517910300555" textual="false" version="1.0"/>
+</session>

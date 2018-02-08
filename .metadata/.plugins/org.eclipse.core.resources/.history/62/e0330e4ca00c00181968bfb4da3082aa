@@ -1,0 +1,58 @@
+package org.multithreading.part3;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import org.multithreading.part2.CommonFileReader;
+import org.multithreading.utils.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class AutoSuggest {
+	private static final Logger log = LoggerFactory.getLogger(AutoSuggest.class);
+	
+	public static void main(String[] args) {
+		/*CommonFileReader reader = new CommonFileReader();
+		//Set<String> wordsToBeSearched = reader.readFiles(FileFormatType.LINE_SEPARATED);
+		Set<String> wordsToBeSearched = new HashSet<>();
+		wordsToBeSearched.add("java");
+		wordsToBeSearched.add("jargon");
+		wordsToBeSearched.add("jaaaa");
+		wordsToBeSearched.add("lang");
+		Set<String> relevantWords = new HashSet<>();
+		String regex = ".*an.*";
+		for(String word: wordsToBeSearched){
+			if(Pattern.matches(regex, word)) {
+				relevantWords.add(word);
+				System.out.println(word);
+			}
+		}*/
+		List<String> sugg =autoSuggest("af");
+	}
+	
+	/**
+	 * This class used to get the list of uto suggestions
+	 * @param query
+	 * @return
+	 */
+	public static List<String> autoSuggest(String query){
+		log.info("Entered to check the suggestions for the string :"+query);
+		List<String> suggestions = new ArrayList<String>();
+		try {		
+			Files.lines(Paths.get(Constants.WORD_CNT_FILE))
+			.filter(x -> x.split("=>")[0].indexOf(query) != -1)
+			.forEach(x -> suggestions.add((x.split(":")[0])));
+			
+		} catch (IOException e) {
+			log.error("Error while reading the file :"+Constants.WORD_CNT_FILE
+					+"\n Error :" +e.getMessage() );
+		}
+		return suggestions;
+	}
+}

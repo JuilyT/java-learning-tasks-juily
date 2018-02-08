@@ -1,0 +1,42 @@
+package org.multithreading.part2;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+public class CommonFileReader {
+	public void readFiles() {
+		Set<String> lines = readFileIntoList();			
+		WikiReader wiki = new WikiReader();
+		//wiki.generateWikiFiles(lines);
+	}
+	
+	public Set<String> readFileIntoList() {
+		Set<String> lines = new HashSet<>();
+		String TAB_SPECIFIED = "Multithreading_Task_2_fortune1000companies.txt";
+		String COMMA_SPECIFIED = "Multithreading_Task_2_java Keywords.txt";
+		String STRING_SEPARATED = "Multithreading_Task2_ProgrammingLanguages.txt";
+		try {
+			BufferedReader reader = new BufferedReader(
+					new FileReader("/home/juilykumari/Downloads/"+TAB_SPECIFIED));
+			String line;
+			reader.readLine();
+			while ((line = reader.readLine()) != null) {
+				String[] values = line.split(" ");
+			      for (String str : values) {
+			        if(str.length()>0)
+			        {
+			        	System.out.println(str);
+			        	lines.add(str.trim());
+			        }
+			      }
+			}
+			reader.close();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		return lines;
+	}
+}
