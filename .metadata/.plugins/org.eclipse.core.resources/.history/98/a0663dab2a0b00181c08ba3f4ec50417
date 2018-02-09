@@ -1,7 +1,0 @@
-package org.multithreading.part1;
-
-import java.util.concurrent.RecursiveTask;
-
-public class CustomRecursiveAction extends RecursiveTask{
-
-}

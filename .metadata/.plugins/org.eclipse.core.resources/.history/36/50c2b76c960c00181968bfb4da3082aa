@@ -1,4 +1,0 @@
-package org.multithreading.utils;
-public final class Constants {
-	public static final String WORD_CNT_INT_FILE="./src/main/resources/wiki_wordcount/wordcount_int.txt";
-}

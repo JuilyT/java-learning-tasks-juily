@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.multithreading.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.stream.Collectors;
@@ -27,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class WikiReader implements Runnable {
 	private static final Logger logger = LoggerFactory.getLogger(WikiReader.class);
-	private static String WIKI_URL="https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=";
 	private static String filePath = "/home/juilykumari/Documents/wiki_results/wiki_";
 	private String wordToBeSearched;
 	
@@ -46,7 +47,7 @@ public class WikiReader implements Runnable {
 			String encodedUrl = null;
 			// Encoded URL with UTF-8
 			encodedUrl = URLEncoder.encode(wordToBeSearched, "UTF-8");
-			URL wikiUrl = new URL(WIKI_URL+encodedUrl);
+			URL wikiUrl = new URL(Constants.WIKI_URL+encodedUrl);
 	        URLConnection con = wikiUrl.openConnection();
 	        BufferedReader in = new BufferedReader(new InputStreamReader(
 	                         con.getInputStream()));

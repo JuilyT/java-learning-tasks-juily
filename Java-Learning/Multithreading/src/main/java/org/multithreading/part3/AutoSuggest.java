@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
 
-import org.multithreading.part2.CommonFileReader;
 import org.multithreading.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +18,7 @@ public class AutoSuggest {
 		for (String string : sugg) {
 			System.out.println(string);
 		}
+		System.out.println(sugg.size());
 	}
 	
 	/**

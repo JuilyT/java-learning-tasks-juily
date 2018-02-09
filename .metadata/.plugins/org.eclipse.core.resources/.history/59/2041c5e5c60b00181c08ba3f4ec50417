@@ -1,5 +1,0 @@
-package org.Refactoring;
-
-public interface PrintStatement {
-
-}

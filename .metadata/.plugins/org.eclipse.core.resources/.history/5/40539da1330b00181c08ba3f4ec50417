@@ -1,5 +1,0 @@
-package org.multithreading.part2;
-
-public enum FileFormatType {
-	TAB_SEPARATED, COMMA_SEPARATED, LINE_SEPARATED
-}

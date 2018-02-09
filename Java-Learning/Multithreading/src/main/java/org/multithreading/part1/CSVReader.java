@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.multithreading.utils.Constants;
+
 public class CSVReader {
 	public CSVReader() {
 	}
@@ -15,7 +17,7 @@ public class CSVReader {
     	List<String> lines = null;
     	try {
             BufferedReader br = Files.newBufferedReader(
-            		Paths.get("/home/juilykumari/Downloads/Multithreading_Task1_Books.csv"));
+            		Paths.get(Constants.IN_CSV_FILE));
             lines = br.lines().collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,5 +1,0 @@
-package org.multithreading.part3;
-
-public class WordCounter {
-	private static String PATH = "/home/juilykumari/Documents/wiki_results";
-}
