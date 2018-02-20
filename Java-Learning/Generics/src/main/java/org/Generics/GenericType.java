@@ -38,22 +38,6 @@ public class GenericType<S>{
 		throw new AssertionError("impossible!");
 	}
 	
-	public static <T, R> GenericType<?> parse(R r, T s) {
-		try {
-			if (Status.getType(s)!=null) {
-				return STATUS;
-			} else if (Week.getType(s)!=null) {
-				return WEEK;
-			} else if (Currency.getType(s)!=null) {
-				return CURRENCY;
-			}
-			GenericType<R> returnedType = new GenericType<R>(r);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
-		throw new AssertionError("impossible!");
-	}
-	
 	public static void main(String[] args) {
 		parse(1);
 	}
