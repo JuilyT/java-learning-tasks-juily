@@ -1,4 +1,6 @@
-package org.ObserverPattern;
+package org.observerpattern.subjects;
+
+import org.observerpattern.observers.Observer;
 
 public interface BlogSection {
 	//methods to register and unregister observers

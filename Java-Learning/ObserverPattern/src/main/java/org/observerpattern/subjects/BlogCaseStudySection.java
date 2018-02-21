@@ -1,20 +1,20 @@
-package org.ObserverPattern;
+package org.observerpattern.subjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.observerpattern.observers.Observer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BlogArticleSection implements BlogSection{
+public class BlogCaseStudySection implements BlogSection{
 	private List<Observer> observers;
 	private String message;
 	private boolean changed;
 	private final Object MUTEX= new Object();
-	private ContentTypeSection contentTypeSection;
-	private static final Logger logger = LoggerFactory.getLogger(BlogArticleSection.class);
+	private static final Logger logger = LoggerFactory.getLogger(BlogCaseStudySection.class);
 	
-	public BlogArticleSection(){
+	public BlogCaseStudySection(){
 		this.observers=new ArrayList<Observer>();
 	}
 	
@@ -57,17 +57,11 @@ public class BlogArticleSection implements BlogSection{
 	
 	//method to post message to the topic
 	public void postMessage(String msg){
-		logger.info("Message Posted to BlogArticleSection:"+msg);
+		logger.info("Message Posted to BlogCaseStudySection:"+msg);
 		this.message=msg;
 		this.changed=true;
 		notifyObservers();
 	}
 
-	public ContentTypeSection getContentType() {
-		return contentTypeSection;
-	}
 
-	public void setContentType(ContentTypeSection contentType) {
-		this.contentTypeSection = contentType;
-	}
 }

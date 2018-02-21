@@ -1,5 +1,7 @@
-package org.ObserverPattern;
+package org.observerpattern.observers;
 
+import org.observerpattern.enums.ContentType;
+import org.observerpattern.subjects.BlogSection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,15 +18,15 @@ public class ArticleSubscriber implements Observer {
 		if (topic.triggerEvent(this) instanceof String) {
 			String msg = (String)topic.triggerEvent(this);
 			if(msg == null){
-				logger.info(name+": No new message");
+				System.out.println(name+": No new message");
 			}else
-			logger.info(name+": Consuming message:"+msg);
+				System.out.println(name+": Consuming message:"+msg);
 		} else {
 			ContentType content  = (ContentType)topic.triggerEvent(this);
 			if(content == null){
-				logger.info(name+": No new content");
+				System.out.println(name+": No new content");
 			}else {
-				logger.info(name+": Consuming content:"+content);
+				System.out.println(name+": Consuming content:"+content);
 			}
 		}
 	}

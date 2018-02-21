@@ -1,5 +1,12 @@
 package org.ObserverPattern;
 
+import org.observerpattern.enums.ContentType;
+import org.observerpattern.observers.ArticleSubscriber;
+import org.observerpattern.observers.Observer;
+import org.observerpattern.subjects.Blog;
+import org.observerpattern.subjects.BlogArticleSection;
+import org.observerpattern.subjects.ContentTypeSection;
+
 /**
  * 
  *
@@ -8,6 +15,7 @@ public class App {
 	
     public static void main( String[] args ) {
     	//create subject
+    	Blog blogTopic = new Blog();
 		BlogArticleSection topic = new BlogArticleSection();
 		ContentTypeSection contentTypeTopic = new ContentTypeSection();
 		
@@ -18,15 +26,13 @@ public class App {
 		
 		//register observers to the subject
 		topic.register(obj1);
-		topic.register(obj2);
-		topic.register(obj3);
-		contentTypeTopic.register(obj1);
+		contentTypeTopic.register(obj2);
+		blogTopic.register(obj3);
 		
 		//attach observer to subject
 		obj1.setBlobSection(topic);
-		obj2.setBlobSection(topic);
-		obj3.setBlobSection(topic);
-		obj1.setBlobSection(contentTypeTopic);
+		obj2.setBlobSection(contentTypeTopic);
+		obj3.setBlobSection(blogTopic);
 		
 		//check if any update is available
 		obj1.update();
@@ -35,7 +41,8 @@ public class App {
 		topic.postMessage("New Message");
 		obj1.update();
 		contentTypeTopic.postMessage(ContentType.AUDIO);
-		obj1.update();
+		obj2.update();
+		blogTopic.postMessage("hfjghgj");
 
     }
 }

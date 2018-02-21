@@ -1,4 +1,6 @@
-package org.ObserverPattern;
+package org.observerpattern.observers;
+
+import org.observerpattern.subjects.BlogSection;
 
 public interface Observer {
 	//method to update the observer, used by subject
