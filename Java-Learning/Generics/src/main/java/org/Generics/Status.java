@@ -1,16 +1,15 @@
 package org.Generics;
 
 public enum Status {
-	IN_PROGRESS("in_progress"),COMPLETED("completed"), CANCELLED("cancelled");
+	IN_PROGRESS("in_progress"), COMPLETED("completed"), CANCELLED("cancelled");
 	String code;
+
 	Status(String code) {
 		this.code = code;
 	}
+
 	public String getCode() {
 		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
 	}
 	public static <T> Status getType(T s) {
 	    for (Status category : values()) {

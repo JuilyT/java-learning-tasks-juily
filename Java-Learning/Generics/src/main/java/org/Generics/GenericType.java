@@ -1,10 +1,17 @@
 package org.Generics;
+
+import org.generics.exception.CustomizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Generic Type class to get the specific Enum object 
  * based on generic value
  * @author juilykumari
  */
 public class GenericType<S>{
+	private static final Logger logger = LoggerFactory.getLogger(GenericType.class);
+	
 	public static final GenericType<Status> STATUS =
       new GenericType<Status>(Status.class);
 
@@ -23,7 +30,7 @@ public class GenericType<S>{
 	return javaType;
    }
 
-	public static <T> GenericType<?> parse(T s) {
+	public static <T> GenericType<?> parse(T s) throws CustomizedException {
 		try {
 			if (Status.getType(s)!=null) {
 				return STATUS;
@@ -33,12 +40,16 @@ public class GenericType<S>{
 				return CURRENCY;
 			}
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			throw new CustomizedException(e.getMessage());
 		}
-		throw new AssertionError("impossible!");
+		return null;
 	}
 	
 	public static void main(String[] args) {
-		parse(1);
+		try {
+			parse(1);
+		} catch (CustomizedException e) {
+			logger.error(e.getMessage());
+		}
 	}
 }
