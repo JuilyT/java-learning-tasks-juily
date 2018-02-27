@@ -1,18 +1,24 @@
-package org.customannotations;
+package org.customannotations.model;
 
 import java.util.Date;
 
+import org.customannotations.annotations.ConsistencyCheck;
+import org.customannotations.annotations.Key;
+import org.customannotations.annotations.Validate;
 import org.customannotations.enums.FieldType;
 
+@ConsistencyCheck
 public class Aadhar {
 	private int id;
-	@Validate(id=FieldType.NAME)
+	@Validate(id=FieldType.STRING)
+	@Key(name = "name")
 	private String fullname;
-	@Validate(id=FieldType.NAME)
+	@Validate(id=FieldType.STRING)
 	private String gender;
-	@Validate(id=FieldType.NAME)
+	@Validate(id=FieldType.STRING)
 	private String address;
-	private Date dob;
+	@Key(name="dob")
+	private String dob;
 	
 	public Aadhar() {
 	}
@@ -41,11 +47,11 @@ public class Aadhar {
 		this.address = address;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

@@ -1,14 +1,27 @@
-package org.customannotations;
+package org.customannotations.model;
 
 import java.util.List;
 
+import org.customannotations.annotations.ConsistencyCheck;
+import org.customannotations.annotations.Key;
+import org.customannotations.annotations.Validate;
 import org.customannotations.enums.FieldType;
 
+@ConsistencyCheck
 public class BankStatement {
 	@Validate(id=FieldType.ACCOUNT)
 	private String accountNumber;
-	@Validate(id=FieldType.NAME)
-	private String customerName;	
+	@Validate(id=FieldType.STRING)
+	@Key(name = "name")
+	private String customerName;
+	private List<Transaction> transactions;
+	@Validate(id=FieldType.STRING)
+	private String address;
+	@Validate(id=FieldType.PHONE_NUMBER)
+	@Key(name = "phone")
+	private String mobileNumber;
+	@Validate(id=FieldType.EMAIL)
+	private String email;
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -46,11 +59,4 @@ public class BankStatement {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	private List<Transaction> transactions;
-	@Validate(id=FieldType.NAME)
-	private String address;
-	@Validate(id=FieldType.PHONE_NUMBER)
-	private String mobileNumber;
-	@Validate(id=FieldType.EMAIL)
-	private String email;
 }

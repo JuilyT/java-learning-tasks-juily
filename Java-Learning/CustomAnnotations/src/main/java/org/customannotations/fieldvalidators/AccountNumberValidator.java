@@ -1,4 +1,4 @@
-package org.customannotations;
+package org.customannotations.fieldvalidators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,7 +10,7 @@ public class AccountNumberValidator implements Validator<String> {
 		Pattern pattern = Pattern.compile(regexStr);
 		Matcher matcher = pattern.matcher(value); 
 		 if (matcher.matches()) {
-		      System.out.println("Account Number Valid");
+		      return true;
 		 }
 		return false;
 	}

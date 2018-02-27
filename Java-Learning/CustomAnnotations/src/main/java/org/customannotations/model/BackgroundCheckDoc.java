@@ -1,7 +1,6 @@
-package org.customannotations;
+package org.customannotations.model;
 
-@DocumentsConsistencyCheck
-public class CommonProofDocuments {
+public class BackgroundCheckDoc {
 	PanCard panCard;
 	Aadhar aadhar;
 	BankStatement bankStmt;
@@ -11,6 +10,15 @@ public class CommonProofDocuments {
 	}
 	public void setPanCard(PanCard panCard) {
 		this.panCard = panCard;
+	}
+	public BackgroundCheckDoc() {
+		super();
+	}
+	public BackgroundCheckDoc(PanCard panCard, Aadhar aadhar, BankStatement bankStmt) {
+		super();
+		this.panCard = panCard;
+		this.aadhar = aadhar;
+		this.bankStmt = bankStmt;
 	}
 	public Aadhar getAadhar() {
 		return aadhar;

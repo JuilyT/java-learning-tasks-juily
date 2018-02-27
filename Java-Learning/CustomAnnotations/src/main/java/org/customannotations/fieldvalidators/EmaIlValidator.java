@@ -1,4 +1,4 @@
-package org.customannotations;
+package org.customannotations.fieldvalidators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

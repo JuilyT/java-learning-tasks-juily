@@ -2,10 +2,12 @@ package org.customannotations.initializer;
 
 import java.util.Date;
 
-import org.customannotations.Aadhar;
-import org.customannotations.BankStatement;
-import org.customannotations.CommonProofDocuments;
-import org.customannotations.PanCard;
+import org.customannotations.model.Aadhar;
+import org.customannotations.model.BankStatement;
+import org.customannotations.model.DrivingLisence;
+import org.customannotations.model.HomeLoanVerificationDoc;
+import org.customannotations.model.BackgroundCheckDoc;
+import org.customannotations.model.PanCard;
 
 public class CommonProofDocumentInInitializer {
 	private static CommonProofDocumentInInitializer INSTANCE;
@@ -22,9 +24,9 @@ public class CommonProofDocumentInInitializer {
 		}
 	}
 	
-	public CommonProofDocuments getcommonProofDocuments() {
+	public BackgroundCheckDoc getcommonProofDocuments() {
 		
-		CommonProofDocuments documents = new CommonProofDocuments();
+		BackgroundCheckDoc documents = new BackgroundCheckDoc();
         documents.setAadhar(getAadhar());
         documents.setPanCard(getPanCard());
         documents.setBankStmt(getBankStmt());
@@ -35,7 +37,7 @@ public class CommonProofDocumentInInitializer {
 		 PanCard pancard = new PanCard();
 		 pancard.setFatherName("Ned Stark");
 		 pancard.setFullname("Arya Stark");
-	     pancard.setDob(new Date(1992,1,10));
+	     pancard.setDob("1992-1-10");
 	     pancard.setPanNumber("BQCPK9794A");  
 	     pancard.setIssuedBy("Ram Reddy");
 	     return pancard;
@@ -45,19 +47,34 @@ public class CommonProofDocumentInInitializer {
 		Aadhar aadhar = new Aadhar();
         aadhar.setId(1);
         aadhar.setAddress("address");
-        aadhar.setDob(new Date(1992,1,19));
+        aadhar.setDob("1992-1-10");
         aadhar.setFullname("Arya Stark");
         aadhar.setGender("female");
         return aadhar;
 	}
 	
+	public HomeLoanVerificationDoc getHomeLoanVerificationDoc() {		
+		HomeLoanVerificationDoc documents = new HomeLoanVerificationDoc();
+        documents.setBankStmt(getBankStmt());
+        documents.setDl(getDrivingLisence());
+        return documents;
+	}
+	
 	private BankStatement getBankStmt() {
-		BankStatement bankStmt = new BankStatement();
-		bankStmt.setAccountNumber("10145678910");
-		bankStmt.setAddress("address");
-		bankStmt.setCustomerName("Arya Stark");
-		bankStmt.setMobileNumber("8007458654");
-		bankStmt.setEmail("aryagmail.com");
-        return bankStmt;
+		 BankStatement bankstmt = new BankStatement();
+		 bankstmt.setAccountNumber("abcd123456");
+		 bankstmt.setAddress("address");
+		 bankstmt.setCustomerName("Arya");
+		 bankstmt.setEmail("arya.gmail.com");
+		 bankstmt.setMobileNumber("1234567891");
+	     return bankstmt;
+	}
+
+	private DrivingLisence getDrivingLisence() {
+		DrivingLisence dl = new DrivingLisence();
+	   dl.setDob("1992-1-10");
+	   dl.setFullName("Arya Stark");
+	   dl.setPhoneNumber("9745678989");
+	   return dl;
 	}
 }

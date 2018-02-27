@@ -1,20 +1,23 @@
-package org.customannotations;
+package org.customannotations.model;
 
-import java.util.Date;
-
+import org.customannotations.annotations.ConsistencyCheck;
+import org.customannotations.annotations.Key;
+import org.customannotations.annotations.Validate;
 import org.customannotations.enums.FieldType;
-import org.customannotations.initializer.CommonProofDocumentInInitializer;
 
+@ConsistencyCheck
 public class PanCard {
-	@Validate(id=FieldType.NAME)
+	@Validate(id=FieldType.STRING)
+	@Key(name = "name")
 	private String fullname;
-	@Validate(id=FieldType.NAME)
+	@Validate(id=FieldType.STRING)
 	private String fatherName;
 	@Validate(id=FieldType.PAN_NUMBER)
 	private String panNumber;
-	@Validate(id=FieldType.NAME)
+	@Validate(id=FieldType.STRING)
 	private String issuedBy;
-	private Date dob;
+	@Key(name = "dob")
+	private String dob;
 	
 	public String getFullname() {
 		return fullname;
@@ -48,11 +51,11 @@ public class PanCard {
 		this.issuedBy = issuedBy;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	

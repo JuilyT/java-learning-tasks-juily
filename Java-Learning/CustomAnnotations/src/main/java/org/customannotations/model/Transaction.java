@@ -1,4 +1,4 @@
-package org.customannotations;
+package org.customannotations.model;
 
 import java.util.Date;
 

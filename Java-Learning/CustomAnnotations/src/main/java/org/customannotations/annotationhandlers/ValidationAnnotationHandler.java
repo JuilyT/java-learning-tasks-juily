@@ -1,8 +1,12 @@
-package org.customannotations;
+package org.customannotations.annotationhandlers;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.customannotations.ErrorMessage;
+import org.customannotations.annotations.Validate;
+import org.customannotations.fieldvalidators.Validator;
 
 /**
  * Handler for the field level annotations.
@@ -20,7 +24,7 @@ public class ValidationAnnotationHandler {
             	field.setAccessible(true);
             	
             	Validator v = myAnn.id().getV();
-            	if (!v.isValid(field.get(ob))) {
+            	if (null!= field.get(ob) && !v.isValid(field.get(ob))) {
             		msg = new ErrorMessage(field.get(ob).toString()+" is not valid and as per "+ 
             				v.getClass().getName(),field.get(ob));
             		errors.add(msg);

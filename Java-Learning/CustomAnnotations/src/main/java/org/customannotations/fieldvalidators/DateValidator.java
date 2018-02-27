@@ -1,4 +1,4 @@
-package org.customannotations;
+package org.customannotations.fieldvalidators;
 
 import java.text.DateFormat;
 import java.text.ParseException;
